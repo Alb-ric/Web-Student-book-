@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition template="Welcome.xhtml">
+	<ui:define name="content">
+		<h:form>
+		Add a student:
+			<br />
+			<h:outputText value="Student First Name: " />
+			<h:inputText value="#{student.first_name}" title="first_name"
+				id="first_name" required="true"
+				requiredMessage="Fill the name please"
+				validatorMessage="last name should contain at least 2 letters, one lowercase and one capital letter">
+				<f:validateRegex pattern="((?=.*[a-z])(?=.*[A-Z]).{2,20})" />
+			</h:inputText>
+			<h:message for="first_name" style="color:red" />
+			<br />
+			<h:outputText value="Student Last Name: " />
+			<h:inputText value="#{student.last_name}" title="last_name"
+				id="last_name" required="true"
+				requiredMessage="Fill the name please"
+				validatorMessage="last name should contain at least 2 letters, one lowercase and one capital letter">
+				<f:validateRegex pattern="((?=.*[a-z])(?=.*[A-Z]).{2,20})" />
+			</h:inputText>
+			<h:message for="last_name" style="color:red" />
+			<br />
+			<h:outputText value="email: " />
+			<h:inputText value="#{student.email}" title="email" id="email"
+				validatorMessage="Student email should contain the character '@' and have a length from 6 to 20 characters">
+				<f:validateRegex pattern="((?=.*[@]).{6,20})" />
+			</h:inputText>
+			<h:message for="email" style="color:red" />
+			<br />
+			<br />
+
+
+			<h:commandButton action="#{studentManager.addStudent(student)}"
+				value="Submit" />
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
